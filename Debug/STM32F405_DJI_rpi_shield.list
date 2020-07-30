@@ -2422,11 +2422,11 @@ int main(void)
   bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
  80014bc:	f242 501c 	movw	r0, #9500	; 0x251c
  80014c0:	f7ff fc11 	bl	8000ce6 <bno080_enableRotationVector>
-  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 	 //TrOne_ReadDist(&sens[0]);
+
 	 HAL_Delay(200);
  80014c4:	20c8      	movs	r0, #200	; 0xc8
  80014c6:	f000 fc9b 	bl	8001e00 <HAL_Delay>

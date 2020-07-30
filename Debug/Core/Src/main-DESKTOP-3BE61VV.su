@@ -1,0 +1,5 @@
+main-DESKTOP-3BE61VV.c:83:6:HAL_SPI_TxCpltCallback	16	static
+main-DESKTOP-3BE61VV.c:92:5:main	8	static
+main-DESKTOP-3BE61VV.c:164:6:SystemClock_Config	88	static
+main-DESKTOP-3BE61VV.c:207:6:HAL_UART_RxCpltCallback	16	static
+main-DESKTOP-3BE61VV.c:222:6:Error_Handler	4	static
