@@ -60,7 +60,6 @@ TERAONE_Result res = 0;
 
 /* Private variables ---------------------------------------------------------*/
 
-
 /* USER CODE BEGIN PV */
 typedef struct stm_rpi{
 	int16_t tof_sens[4];
@@ -120,11 +119,11 @@ int main(void)
   MX_SPI2_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-/*
+
   bno080_Initialization();  // READ sensor in external interrupt  - void EXTI9_5_IRQHandler(void)
-  bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
-  bno080_start_IT();
-*/
+  //bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
+  //bno080_start_IT();
+
   // RTK
   //sensorRTK = newCSensors();
   //sensorRTK = copy_struct(); // Tukaj se nahajajo vsi podatki
@@ -141,13 +140,15 @@ int main(void)
   while (1)
   {
 	 //TrOne_ReadDist(&sens[0]);
-
-	 HAL_SPI_Transmit_DMA(&hspi1, &spi_data, sizeof(spi_data));
+	  /*
+	 HAL_SPI_Transmit_DMA(&hspi1, (uint8_t *)&spi_data, sizeof(spi_data));
 	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 1);
 	 HAL_Delay(1000);
 
 	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 0);
 	 HAL_Delay(1000);
+
+	 */
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

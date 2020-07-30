@@ -25,7 +25,8 @@ bno080.c:349:7:bno080_getQuatJ	8	static
 bno080.c:355:7:bno080_getQuatK	8	static
 bno080.c:361:7:bno080_getQuatReal	8	static
 bno080.c:367:7:bno080_getQuatRadianAccuracy	8	static
-bno080.c:376:9:waitForSPI	24	static
-bno080.c:414:9:receivePacket	24	static
-bno080.c:456:9:sendPacket	24	static
-bno080.c:479:6:HAL_GPIO_EXTI_Callback	16	static
+bno080.c:397:9:waitForSPI	24	static
+bno080.c:416:9:receivePacket	24	static
+bno080.c:453:9:receivePacket_IT	24	static
+bno080.c:495:9:sendPacket	24	static
+bno080.c:518:6:HAL_GPIO_EXTI_Callback	16	static

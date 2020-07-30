@@ -47,7 +47,7 @@ volatile uint8_t constantRead = 0;
 
 uint8_t bno080_Initialization(void)
 {
-	//HAL_NVIC_DisableIRQ(BNO_IRQN);
+	HAL_NVIC_DisableIRQ(BNO_IRQN);
 
 	BNO_DESELECT;
 	BNO_RESET;
@@ -57,7 +57,7 @@ uint8_t bno080_Initialization(void)
 	//Wait for first assertion of INT before using WAK pin. Can take ~104ms
 	if(waitForSPI(BNO_NOREAD) != 1)
 	{
-		return 0;
+		//return 0;
 	}
 
 	//At system startup, the hub must send its full advertisement message (see 5.2 and 5.3) to the
@@ -66,7 +66,7 @@ uint8_t bno080_Initialization(void)
 	//Read it and dump it
 	if(waitForSPI(BNO_READ) != 1) //Wait for assertion of INT before reading advert message.
 	{
-		return 0;
+		//return 0;
 	}
 	//receivePacket();
 
@@ -74,7 +74,7 @@ uint8_t bno080_Initialization(void)
 	//Read it and dump it
 	if(waitForSPI(BNO_READ) != 1) //Wait for assertion of INT before reading Init response
 	{
-		return 0;
+		//return 0;
 	}
 	//receivePacket();
 
@@ -88,11 +88,11 @@ uint8_t bno080_Initialization(void)
 	//Now we wait for response
 	if(waitForSPI(BNO_READ) != 1)
 	{
-		return 0;
+		//return 0;
 	}
 
 	if (shtpData[0] == SHTP_REPORT_PRODUCT_ID_RESPONSE){
-		return 1;
+		//return 1;
 	}
 
 	return 0; //Something went wrong
@@ -372,7 +372,7 @@ float bno080_getQuatRadianAccuracy(void)
 
 
 
-
+/*
 uint8_t waitForSPI(wait_cmd val)
 {
 	uint32_t tickstart = HAL_GetTick();
@@ -391,7 +391,9 @@ uint8_t waitForSPI(wait_cmd val)
 	return 1;
 }
 
-/*
+*/
+
+
 uint8_t waitForSPI(wait_cmd val)
 {
 	uint32_t tickstart = HAL_GetTick();
@@ -408,7 +410,7 @@ uint8_t waitForSPI(wait_cmd val)
 
 	return 1;
 }
-*/
+
 
 
 uint8_t receivePacket(void)
