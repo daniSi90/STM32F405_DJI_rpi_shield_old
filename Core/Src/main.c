@@ -120,12 +120,11 @@ int main(void)
   MX_SPI2_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
-  //bno080_Initialization();  // READ sensor in external interrupt  - void EXTI9_5_IRQHandler(void)
-  //bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
-
-  //NVIC_EnableIRQ(EXTI15_10_IRQn); //RUN data reading
-
+/*
+  bno080_Initialization();  // READ sensor in external interrupt  - void EXTI9_5_IRQHandler(void)
+  bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
+  bno080_start_IT();
+*/
   // RTK
   //sensorRTK = newCSensors();
   //sensorRTK = copy_struct(); // Tukaj se nahajajo vsi podatki

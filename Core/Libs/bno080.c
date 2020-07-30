@@ -448,6 +448,43 @@ uint8_t receivePacket(void)
 	return 0;
 }
 
+uint8_t receivePacket_IT(void)
+{
+
+	BNO_SELECT;
+	//Get the first four bytes, aka the packet header
+	HAL_SPI_Receive(BNO_SPI, shtpHeader, 4, 100);
+
+	//Calculate the number of data bytes in this packet
+	uint16_t dataLength = ((uint16_t)shtpHeader[1] << 8 | shtpHeader[0]);
+	dataLength &= ~(1 << 15); //Clear the MSbit.
+	//This bit indicates if this package is a continuation of the last. Ignore it for now.
+	//TODO catch this as an error and exit
+	if (dataLength == 0)
+	{
+		//Packet is empty
+		return 0; //All done
+	}
+	dataLength -= 4; //Remove the header bytes from the data count
+
+	if(dataLength < MAX_PACKET_SIZE){
+		HAL_SPI_Receive(BNO_SPI, shtpData, dataLength, 200);
+	}else{
+		HAL_SPI_Receive(BNO_SPI, shtpData, MAX_PACKET_SIZE, 200);
+
+		uint16_t data_left = dataLength - MAX_PACKET_SIZE;
+		uint8_t tmp_buff;
+		for(int i=0; i < data_left; i++){
+			HAL_SPI_Receive(BNO_SPI, &tmp_buff, 1, 100); /// ??
+		}
+
+	}
+
+	BNO_DESELECT;
+
+	return 0;
+}
+
 
 
 //Given the data packet, send the header then the data
