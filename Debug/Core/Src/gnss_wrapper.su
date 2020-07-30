@@ -1,0 +1,6 @@
+gnss.hpp:35:5:CGNSS::CGNSS()	16	static
+gnss.hpp:55:7:CSensors::CSensors()	16	static
+gnss_wrapper.cpp:13:11:CSensors* copy_struct()	4	static
+gnss_wrapper.cpp:23:8:CGNSS* newCGNSS()	16	static
+gnss_wrapper.cpp:28:11:CSensors* newCSensors()	16	static
+gnss_wrapper.cpp:32:6:void handleGNSS_c()	8	static

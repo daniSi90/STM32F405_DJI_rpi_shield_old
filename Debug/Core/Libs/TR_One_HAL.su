@@ -1,0 +1,4 @@
+TR_One_HAL.c:10:16:TrOne_WhoAmI	32	static
+TR_One_HAL.c:32:16:TrOne_ReadDist	24	static
+TR_One_HAL.c:47:16:TrOne_ChangeBaseAddr	32	static
+TR_One_HAL.c:69:9:TrOne_crc8	24	static

@@ -1,0 +1,14 @@
+gnss.hpp:35:5:CGNSS::CGNSS()	16	static
+gnss.hpp:55:7:CSensors::CSensors()	16	static
+gnss.cpp:25:6:void handleGNSS()	272	static
+gnss.cpp:41:6:void EventsCommGNSS(uint8_t*, int32_t)	16	static
+gnss.cpp:46:5:int readUBXpkt(byte*)	24	static
+gnss.cpp:74:6:void initGNSSrx()	4	static
+gnss.cpp:80:5:int addUBXpktByte(byte, tGNSSrx*)	24	static
+gnss.cpp:139:5:int checkUBX(byte*, int)	24	static
+gnss.cpp:148:6:void crcUBX(byte*, int, byte*, byte*)	32	static
+gnss.cpp:160:6:bool CGNSS::parseUBX(byte*, int)	40	static
+gnss.cpp:199:9:int32_t bytesToLong(uint8_t*)	24	static
+gnss.cpp:210:9:int16_t bytesToShort(uint8_t*)	24	static
+gnss.cpp:216:1:void __static_initialization_and_destruction_0(int, int)	16	static
+gnss.cpp:216:1:cpp)	8	static
