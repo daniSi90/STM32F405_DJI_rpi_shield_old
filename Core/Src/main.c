@@ -60,7 +60,15 @@ TERAONE_Result res = 0;
 
 /* Private variables ---------------------------------------------------------*/
 
+
 /* USER CODE BEGIN PV */
+typedef struct stm_rpi{
+	int16_t tof_sens[4];
+	int16_t rtk_sens;
+}stm_rpi;
+
+stm_rpi spi_data = {.tof_sens[0] = 500, .tof_sens[1] = 600, .tof_sens[2] = 700, .tof_sens[3] = 800, .rtk_sens = 100};
+
 
 /* USER CODE END PV */
 
@@ -72,7 +80,9 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_SPI_TxCpltCallback (SPI_HandleTypeDef *hspi){
 
+}
 /* USER CODE END 0 */
 
 /**
@@ -122,7 +132,7 @@ int main(void)
 
   /* TerraBeeOne */
   //sens[0].i2cHandle = &hi2c1;
-  //sens[0].Address = 0x40 << 1;  // poglej addreso
+  //sens[0].Address = 0x40 << 1;  // default 0x30 << 1;
   //res = TrOne_WhoAmI(&sens[0]);
 
   /* USER CODE END 2 */
@@ -132,8 +142,14 @@ int main(void)
   while (1)
   {
 	 //TrOne_ReadDist(&sens[0]);
-
 	 HAL_Delay(200);
+
+	 HAL_SPI_Transmit_DMA(&hspi1, &spi_data, sizeof(spi_data));
+	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 1);
+	 HAL_Delay(1000);
+
+	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 1);
+	 HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
