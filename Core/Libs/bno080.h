@@ -180,6 +180,7 @@ void saveCalibration();
 
 uint8_t waitForSPI(wait_cmd val);
 uint8_t receivePacket(void);
+uint8_t receivePacket_IT(void);
 uint8_t sendPacket(uint8_t channelNumber, uint8_t dataLength);
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
