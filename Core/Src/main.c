@@ -121,6 +121,7 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
+  //bno080_Initialization();  // READ sensor in external interrupt  - void EXTI9_5_IRQHandler(void)
   //bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
 
   //NVIC_EnableIRQ(EXTI15_10_IRQn); //RUN data reading
@@ -141,7 +142,6 @@ int main(void)
   while (1)
   {
 	 //TrOne_ReadDist(&sens[0]);
-	 HAL_Delay(200);
 
 	 HAL_SPI_Transmit_DMA(&hspi1, &spi_data, sizeof(spi_data));
 	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 1);
