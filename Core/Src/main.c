@@ -123,6 +123,7 @@ int main(void)
 
   bno080_Initialization();  // READ sensor in external interrupt  - void EXTI9_5_IRQHandler(void)
   bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
+  //bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
 
   //NVIC_EnableIRQ(EXTI15_10_IRQn); //RUN data reading
 
@@ -148,7 +149,7 @@ int main(void)
 	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 1);
 	 HAL_Delay(1000);
 
-	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 1);
+	 HAL_GPIO_WritePin (RPI_INT_GPIO_Port, RPI_INT_Pin, 0);
 	 HAL_Delay(1000);
     /* USER CODE END WHILE */
 
