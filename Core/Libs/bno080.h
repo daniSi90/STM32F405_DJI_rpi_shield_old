@@ -18,18 +18,30 @@
 #include "quaternion.h"
 
 /* Link With Hardware */
-#define BNO_SPI 		&hspi2   		// CHANGE 1
+//#define BNO_SPI_CHANNEL SPI2
 /* BNO CS Pin */
-#define BNO_CS_PORT  	GPIOA			// CHANGE 2
-#define BNO_CS_PIN 		GPIO_PIN_8		// CHANGE 3
+//#define BNO_CS_PORT  	GPIOA			// CHANGE 2
+//#define BNO_CS_PIN 		GPIO_PIN_8		// CHANGE 3
 /* BNO RST Pin */
-#define BNO_RST_PORT 	GPIOC			// CHANGE 4
-#define BNO_RST_PIN  	GPIO_PIN_7		// CHANGE 5
+//#define BNO_RST_PORT 	GPIOC			// CHANGE 4
+//#define BNO_RST_PIN  	GPIO_PIN_7		// CHANGE 5
+/* BNO Inter. Pin -- Falling Edge, PullUp Resistor */
+//#define BNO_INT_PORT_F 	GPIOA			// CHANGE 6
+//#define BNO_INT_PIN_F 	GPIO_PIN_10	    // CHANGE 7
+//#define BNO_IRQN		EXTI15_10_IRQn  // CHANGE 8
+
+
+#define BNO_SPI_CHANNEL SPI3
+/* BNO CS Pin */
+#define BNO_CS_PORT  	GPIOB			// CHANGE 2
+#define BNO_CS_PIN 		GPIO_PIN_4		// CHANGE 3
+/* BNO RST Pin */
+#define BNO_RST_PORT 	GPIOB			// CHANGE 4
+#define BNO_RST_PIN  	GPIO_PIN_5		// CHANGE 5
 /* BNO Inter. Pin */
-#define BNO_INT_PORT_F 	GPIOA			// CHANGE 6
+#define BNO_INT_PORT_F 	GPIOC			// CHANGE 6
 #define BNO_INT_PIN_F 	GPIO_PIN_10	    // CHANGE 7
 #define BNO_IRQN		EXTI15_10_IRQn  // CHANGE 8
-
 
 #define BNO_SELECT   HAL_GPIO_WritePin(BNO_CS_PORT, BNO_CS_PIN, GPIO_PIN_RESET);
 #define BNO_DESELECT HAL_GPIO_WritePin(BNO_CS_PORT, BNO_CS_PIN, GPIO_PIN_SET);
@@ -121,6 +133,7 @@ typedef enum
 /* Global Functions */
 uint8_t bno080_Initialization(void);
 void bno080_start_IT(void);
+void bno080_stop_IT(void);
 float bno080_qToFloat(int16_t fixedPointValue, uint8_t qPoint);
 void bno080_enableRotationVector(uint16_t timeBetweenReports);
 void bno080_enableGameRotationVector(uint16_t timeBetweenReports);
@@ -137,6 +150,8 @@ void bno080_calibratePlanarAccelerometer(void);
 void bno080_calibrateAll(void);
 void bno080_endCalibration(void);
 
+void parseCommandReport(void);
+void parseInputReport(void);
 float bno080_getQuatI(void);
 float bno80_getQuatJ(void);
 float bno080_getQuatK(void);
@@ -178,11 +193,12 @@ void sendCalibrateCommand(uint8_t thingToCalibrate);
 void requestCalibrationStatus();
 void saveCalibration();
 
-uint8_t waitForSPI(wait_cmd val);
+uint8_t waitForSPI(void);
 uint8_t receivePacket(void);
 uint8_t receivePacket_IT(void);
 uint8_t sendPacket(uint8_t channelNumber, uint8_t dataLength);
 
+uint8_t LL_SPI_SendByte(uint8_t data);
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 
 #ifdef __cplusplus

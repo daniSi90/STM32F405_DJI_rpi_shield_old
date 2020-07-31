@@ -73,6 +73,7 @@ stm_rpi spi_data = {.tof_sens[0] = 500, .tof_sens[1] = 600, .tof_sens[2] = 700, 
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -118,11 +119,15 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI2_Init();
   MX_SPI1_Init();
+
+  /* Initialize interrupts */
+  MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 
   bno080_Initialization();  // READ sensor in external interrupt  - void EXTI9_5_IRQHandler(void)
-  //bno080_enableRotationVector(9500); //enable rotation vector at 200Hz
-  //bno080_start_IT();
+  bno080_enableRotationVector(19000); //enable rotation vector at 200Hz
+  HAL_Delay(20);
+  bno080_start_IT();
 
   // RTK
   //sensorRTK = newCSensors();
@@ -197,6 +202,17 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief NVIC Configuration.
+  * @retval None
+  */
+static void MX_NVIC_Init(void)
+{
+  /* EXTI15_10_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
 
 /* USER CODE BEGIN 4 */

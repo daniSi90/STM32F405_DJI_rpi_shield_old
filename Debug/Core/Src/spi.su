@@ -1,5 +1,8 @@
-spi.c:34:6:MX_SPI1_Init	8	static
-spi.c:55:6:MX_SPI2_Init	8	static
-spi.c:77:6:MX_SPI3_Init	8	static
-spi.c:99:6:HAL_SPI_MspInit	72	static
-spi.c:244:6:HAL_SPI_MspDeInit	16	static
+stm32f4xx_ll_spi.h:366:22:LL_SPI_SetStandard	16	static
+stm32f4xx_ll_bus.h:411:22:LL_AHB1_GRP1_EnableClock	24	static
+stm32f4xx_ll_bus.h:1187:22:LL_APB1_GRP1_EnableClock	24	static
+spi.c:32:6:MX_SPI1_Init	8	static
+spi.c:53:6:MX_SPI2_Init	72	static
+spi.c:100:6:MX_SPI3_Init	72	static
+spi.c:147:6:HAL_SPI_MspInit	48	static
+spi.c:226:6:HAL_SPI_MspDeInit	16	static
